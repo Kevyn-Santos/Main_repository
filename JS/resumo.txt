@@ -1,0 +1,162 @@
+estrutura web: 
+
+uma pagina web é baseada em objetos e segue um formato de arvore, cada elemento da pagina é um objeto e um nó. os elemtos que derivam de outros são chamados elemtos filhos e aqueles de quem são derivados são os elementos pais. se dois elementos filho derivam de um mesmo pai entao estes elementos filhos são irmaos.
+o javascript tem metodos que tratam os elementos ora como elementos ora como nós.
+
+
+
+capturando elementos: 
+
+Para o javascript modificar os elementos de uma pagina ele precisa primeiro lê-los, para isso existem os "metodos de pagina". todos precedidos de 'document.'
+
+getElementBytag(captura um elemento apartir de seu nome, entao, p, div, section, h1-6, etc)
+getElementById(captura um elemento apartir do ID atribuido a ele)
+getElementByClassName(captura um elemento pela sua classe)
+querySelector(captura o primeiro elemento declarado que aparecer, utiliza as marcaçoes de css para classes e ID) (querySelector("h1"), seleciona o primeiro h1 que encontrar)
+querySelectorAll(captura todos os elementos declarados que aparecerem, necessita um loop) (querySelectorAll("h1"), usando o loop vai selecionar todos os h1 da pagina)
+
+os principais capturadores de elementos são esses.
+
+
+
+modificando elementos: 
+
+Apos um elemento ser capturado existem metodos e propriedades que permitem ele ser modificado.
+metodos usam o parenteses (), enquanto propriedades usam igual e aspas duplas ="".
+
+innerHTML(propriedade), serve para substituir os conteudos dos elementos da pagina.
+createElement(metodo), serve para criar um elemto novo na pagina. createElement(<p>), cria um novo paraagrafo na pagina.
+appendChild(metodo), transforma um elemento em fi,ho de outro elemento, ou "gruda um elemento filho declarado no elemto pai que esta sendo modificado).
+className(propriedade), adiciona uma classe ao elemento atribuido.
+
+var div = document.querySelector("div"); seleciona o primeiro div que aparecer.
+
+var p = document.createElement(<P>); cria no documento o elemento p.
+
+p.innerHTML="isso é um paragrafo" atribui ao elemento p o texto entre aspas.
+
+div.appendChild(p); faz do elemento p um elemento filho de div.
+
+é um exemplo bem tosco mas funciona mais ou menos assim. Existem outros mas so me lembro desses por agora
+
+
+capturadores de eventos: 
+
+É aqui que o javascript começa a ficar interativo, com os capturadores de eventos podemos registar as açoes do usuario e fazer algo baseado nelas, entao sabemos quando o mouse se mexe em cima de um objeto, quando uma tecla é clicada, quando a tela é mexida, etc.
+
+os eventos podem ser declarados inline no html ou com o addEventListner que é atribuido a uma variavel, este recebe o evento que vai ser capturado e uma função que vai realizar alguma coisa quando o evento for capturado. Aqui se junta todos os outros metodos de alteração do documeto ou o que for, depende da criatividade para resolver o problema. Na função se passa o objeto de evento, que é o pai de todos os eventos da pagina, com ele é possivel controlar como o evento vai se comportar depois de ser executado.
+
+div.addEventListner("onClick", function(Event){
+	Event.PreventDefault
+}
+o codigo registra um evento de click para uma div, quando esse evento é executado se passa uma funçao que recebe o objeto evento de parametro, por conta desse objeto evento é possivel impedir o comportamento padrão daquele elemento por meio do Event.PreventDefault. portanto o objeto event serve para modificar o comportamento dos eventos executados, e isso vai desde de previnir seu comportamento padrao ate impedir sua execução como um todo.
+
+
+
+Operador ternario:
+Basicamente é uma outra forma de escrever if else, ele consiste em escrever a condição como se fosse uma pergunta a ser respondida, e então executar algo caso ela seja verdade e outra coisa caso nao seja verdade.
+var age = 21
+
+age >= 18 ? "voce é maior de idade" : "voce é menor de idade";
+
+na pratica o operador ternario é o ponto de interrogação, que substitui o if, e o dois pontos, que substitui o else.
+
+nesse codigo eu pergunto se a variavel idade é maior ou igual a 18 (age >=18?), e então escrevo logo em seguida o que azer caso isso seja verdade. E caso não seja verdade (:) eu executo outra coisa.
+OBS: o ponto e virgula só vai no final da linha
+age >= 18 ? "voce é maior de idade"; : "voce é menor de idade"; (errado)
+age >= 18 ? "voce é maior de idade" : "voce é menor de idade"; (certo)
+
+
+Method chain:
+Consiste em escrever todos os metodos necessarios em linha, sem precisar ficar repetindo e reatribuido valores para se fazer algo.
+
+username = username.trim(); 
+let letter = username.charAt(0);
+letter= letter.toUpperCase(); 
+
+let extrachar = username.slice(1);
+extrachar = extrachar.toLowerCase();
+username = letter + extrachar;
+console.log(username);
+
+esse codigo transforma a primeira letra do nome em maiuscula e todo o resto em minuscula.
+
+username = username.trim().charAt(0).toUpperCase() + username.trim().slice(1).toLowerCase();
+esse codigo faz a mesma coisa, mas tudo em uma só linha.
+
+spread operator:
+Ele "descompacta" os elementos de um array ou de uma string para que seja possivel seu uso. ele é usado com tres pontos (...).
+
+let username = "Kevyn";
+let letters = [...username];
+console.log(letters);
+
+Aqui ele faz justamente isso, pega a string de username e quebra ela em caracteres distintos e joga eles dentro do array letters.
+é ainda possivel juntar dois arrays usando o spread operator, então ele vira uma lista separada de dois arrays diferentes.
+
+
+rest operator:
+ele junta variaveis distintas dentro de um array, mas ele "cria" esse array. ele é chamado usando function xxx(...nome do array a ser criado){}.
+
+function openFriedge(...food){//essa função recebe n elementos para coloca-los num array de nome food
+    console.log(food) // printa o array food
+}
+
+let food1 = "pizza";//aqui eu declaro os elementos de nome food
+let food2 = "sushi";
+let food3 = "rice";
+
+openFriedge(food1, food2, food3);// aqui eu executo a função atribuido os elementos food, o resultado esperado é um array com todos esses elementos
+
+Callback:
+Consiste em chamar uma função como argumento de outra função, é util quando é necessario esperar um resposta do usuario e então executar açgo, e é o ponto principal para coisas como map, filter, reduce, etc
+
+ForEach:
+Ele percorre um array e executa uma função para cada elemento do array, substindo quaisquer valores no array original.
+
+Map:
+Faz a mesma coisa que o forEach, porem armazena os valores num novo array. portanto para se usar o map é neessario declara-lo como uma variavel.
+
+Filter:
+Faz a mesma coisa que o forEach e o Map, porem ele passa apenas condicionais.
+
+Reduce:
+Reduz um vetor a uma unica variavel, então serve paraa a soma de valores dentro de um vetor e retorna uma variavel não um vetor.
+
+Function Expressions:
+Consiste em atribuir uma função á uma variavel, ou passar a função completa como parametro para algo. Com isso não é necessario pensar em nomes de funçoes ja que ela so executa diretamente naquee pedaço de codigo e simplismente acaba.
+
+Arrow Function:
+ É uma outra forma de escrever funçoes, ao ives de declarar function nome(){}, voce simplesmente escreve nome()=>{função}.
+ Se o codigo tiver apenas uma linha não são necessarias chaves. então isso é so uma forma mais rapida de se escrever funçoes, pois ela funciona da mesmissima forma.
+
+Objetos e classes:
+
+Classes são modelos de objetos, eles dizem quais dados um objeto vai conter podendo esses ser variaveis simples, arrays, funcoes, outros objetos, etc.. Eles não são instanciados o que quer dizer que eles nao tem valores proprios. A classe deve levar um construtor que é fundamental na inicialização dos objetos pois, em termos simples, eles dizem em qual ordem que os dados vão entrar e a qual elemento da classe os dados se referrem.
+
+
+class person {
+    idade;
+    nome;
+    constructor(idade, nome) {
+        this.idade = idade;
+        this.nome = nome;
+    }
+}
+aqui eu crio uma classe chamada pessoa, que é um modelo de objeto, essa classe recebe uma idade e um nome, em seu construtor eu digo que o primeiro valor a entrar é a idade e depois o nome, e digo que a idade do construtor referencia a idade da classe, e que o nome do construtor referencia o nome da classe.
+
+Ja um objeto é uma classe instanciada, ou seja, eu dou valores a partir de uma classe.
+
+let john =  new person(25,"john");
+
+aqui eu crio um objeto chamado john, ele é feito a partir da classe person, e os dados que entram são os da classe, ou seja, a idade e o nome. 
+
+Se um dado que nao esta no construtor for registrado ele não é lido, e se não for colocado algum dos dados do construtor então ele aparece umo indefinido (tipo colocar so a idade ou so o nome).
+
+
+portanto: classes são modelos de objetos, e objetos são instancias, coisas, criadas a partir da classe. Uma das principais funcionalidades do javascript é ser orientada a objetos, portanto os metodos propriedades, dados e atributos são baseados em algum objeto.
+
+
+Json(JavaScript Object Notation): 
+
+É uma especie de objeto que serve para mandar dados para um servidor, tanto que ele é escrito como um objeto, é como uma versao melhorada do XML, e tal como ele serve para transferencia de dados. geralmente ele vem de algum arquivo externo ou de uma API, e para transforma-lo em objeto é necessario usar o metodo  JSON.parse(variavel Json).

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event listner challenges</title>
+</head>
+<body>
+    <h1>challenge 4</h1>
+
+    <form>
+        
+        <label><input type="text"></label>
+        <input type="submit" value="send number">
+    
+    </form>
+
+    <script>
+        let header = document.querySelector("h1");
+        let form = document.querySelector("form");
+
+        form.addEventListener("submit", function(event){
+            event.preventDefault();//impede que o formulario envie as informaçoes para um banco de dados
+            let mynum = parseInt(document.querySelector("input").value);// transforma o valor de input em inteiro
+
+            if(mynum){
+                header.style.fontSize = mynum + "px";//transforma o tamanho de fonte de h1 para x pixels, onde x é o valor de input
+            }else{
+                alert("please enter a number");
+            }
+        })
+    </script>
+</body>
+</html>

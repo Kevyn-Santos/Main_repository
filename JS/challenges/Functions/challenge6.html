@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions challenges</title>
+</head>
+<body>
+    <h1>Challenge 6</h1>
+    <script>
+        let userName = prompt("provide your name", "");
+        let gift = ['cake', 'chocollate', 'banana', 'whiski', 'beff'];
+
+        function hello(name){
+
+            let greeting;
+
+            if(name == null || name == ''){
+                greeting = "you didn't give me your name";
+            }else{
+                greeting = `Hello ${name}, and welcome`;
+            }
+            return greeting;
+        }
+        
+        function randomGift(min, max){
+            return Math.floor( (max - min + 1) * Math.random() + min );
+        }
+        
+        function hospitality(name, gift){
+            console.log(hello(name))
+            let random = gift[randomGift (0, gift.length - 1)]
+                console.log(`Hello ${name}, would you like some ${random}`);
+            
+        }
+        hospitality(userName, gift);
+    </script>
+</body>
+</html>

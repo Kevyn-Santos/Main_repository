@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event listner challenges</title>
+</head>
+<body>
+    <h1>challenge 3</h1>
+    <p>here some paragraph</p>
+    <div>
+        <p>here's other paragraph</p>
+    </div>
+    <button>Turn green!</button>
+    <script>
+        let div = document.querySelector('div');
+        let btn = document.querySelector('button');
+
+        btn.addEventListener('click', function(){
+            let NovoPara = document.createElement('p');
+            let Text = document.createTextNode("here's a new paragraph");
+
+            NovoPara.appendChild(Text);
+            div.appendChild(NovoPara);
+        })
+    </script>
+</body>
+</html>

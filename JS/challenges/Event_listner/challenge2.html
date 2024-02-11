@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event listner challenges</title>
+</head>
+<body>
+    <h1>challenge 2</h1>
+    <p>here some paragraph</p>
+    <p>here's other paragraph</p>
+    <p>and other paragraph</p>
+    <button>Turn green!</button>
+    <script>
+        let para = document.querySelectorAll('p');
+        let btn =  document.querySelector('button');
+        btn.addEventListener('click',function(){
+            for(EachP of para){
+                EachP.style.color = "green"
+            }
+        })
+    </script>
+</body>
+</html>

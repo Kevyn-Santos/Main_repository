@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions challenges</title>
+</head>
+<body>
+    <h1>Challenge 4</h1>
+    <script>
+        let userName = prompt("provide your name", "");
+
+        function hello(name){
+
+            let greeting;
+
+            if(name == null || name == ''){
+                greeting = "you didn't give me your name";
+            }else{
+                greeting = `Hello ${name}, and welcome`;
+            }
+            return greeting;
+        }
+        console.log(hello(userName));
+    </script>
+</body>
+</html>

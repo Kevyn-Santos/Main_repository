@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>color selection</title>
+</head>
+<body>
+
+    <p></p>
+
+    <script>
+        const para = document.querySelector("p");
+        let color = prompt("Escreva uma cor", "");
+
+        if(color == "red"||color == "green"|| color == "blue"){
+            console.log(`You selected a primary color ${color}`);
+        }else if(color == "yellow"||color == "orange"|| color == "purple"){
+            console.log(`You selected a secondary color ${color}`);
+        }else{
+            console.log("No colors;-;");
+        }
+
+        para.innerHTML = `you selected this color: ${color}`
+        para.style.color = `${color}`
+    </script>
+</body>
+</html>
