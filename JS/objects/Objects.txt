@@ -1,0 +1,92 @@
+Objetos e classes:
+
+Classes são modelos de objetos, eles dizem quais dados um objeto vai conter podendo esses ser variaveis simples, arrays, funcoes, outros objetos, etc.. Eles não são instanciados o que quer dizer que eles nao tem valores proprios. A classe deve levar um construtor que é fundamental na inicialização dos objetos pois, em termos simples, eles dizem em qual ordem que os dados vão entrar e a qual elemento da classe os dados se referrem.
+
+
+class person {
+    idade;
+    nome;
+    constructor(idade, nome) {
+        this.idade = idade;
+        this.nome = nome;
+    }
+}
+aqui eu crio uma classe chamada pessoa, que é um modelo de objeto, essa classe recebe uma idade e um nome, em seu construtor eu digo que o primeiro valor a entrar é a idade e depois o nome, e digo que a idade do construtor referencia a idade da classe, e que o nome do construtor referencia o nome da classe.
+
+Ja um objeto é uma classe instanciada, ou seja, eu dou valores a partir de uma classe.
+
+let john =  new person(25,"john");
+
+aqui eu crio um objeto chamado john, ele é feito a partir da classe person, e os dados que entram são os da classe, ou seja, a idade e o nome. 
+
+Se um dado que nao esta no construtor for registrado ele não é lido, e se não for colocado algum dos dados do construtor então ele aparece umo indefinido (tipo colocar so a idade ou so o nome).
+
+
+portanto: classes são modelos de objetos, e objetos são instancias, coisas, criadas a partir da classe. Uma das principais funcionalidades do javascript é ser orientada a objetos, portanto os metodos propriedades, dados e atributos são baseados em algum objeto.
+
+
+Json(JavaScript Object Notation): 
+
+É uma especie de objeto que serve para mandar dados para um servidor, tanto que ele é escrito como um objeto, é como uma versao melhorada do XML, e tal como ele serve para transferencia de dados. geralmente ele vem de algum arquivo externo ou de uma API, e para transforma-lo em objeto é necessario usar o metodo  JSON.parse(variavel Json).
+
+
+
+Keywords:
+Existem algumas palavras especiais em javascript particularmente referentes a objetos e classes como this, static e super.
+
+This:
+O this diz praticamente o seguinte "pegue essa propriedade que esta dentro do objeto no qual estou", portnto ela referencia uma propriedade do objeto ou classe aonde ela [this] esta. Na pratica é mais simples de visualizar:
+
+let Person = {//object literal, um objeto ja instanciado sem a necessidade de uma classe
+    firstName: "John",
+    lastName: "Titor",
+    date: 2006,
+    greetings: function(){
+        console.log(`Olá, meu nome é ${this.firstName}`);
+    }
+};
+resultado: ola, meu nome é john
+
+Neste objeto o this fala, eu estou dentro de um objeto então pegue essa propriedade desse objeto, ou eu estou dentro de person então pegue a propriedade firstName de person.
+como o this referencia a propriedade de um objeto poderiamos esperar o mesmo resultado se entrassemos no objeto e depois na sua propriedade, portanto:
+${this.firstName} é equivalente a ${Person.firstName}.
+
+Se não usarmos o this então nossas funçoes ou atribuiçoes se ligariam a variaveis globais de mesmo nome, e se essas variaveis não forem declaradas então teremos um erro de variavel não existente.
+
+let firstName = "maria";
+let Person = {//object literal, um objeto ja instanciado sem a necessidade de uma classe
+    firstName: "John",
+    lastName: "Titor",
+    date: 2006,
+    greetings: function(){
+        console.log(`Olá, meu nome é ${firstName}`);
+    }
+};
+resultado: ola, meu nome é maria
+
+Aqui não usamos o this na função greetings, então quando a executarmos o nosso retorno não sera "john" mas sim "maria", pois a função esta acessando uma variavel global e não a do objeto.
+O mesmo vale para classes e construtores.
+OBS: se o this for declarado como variavel global ele vai retornar as propriedades da janela do navegador.
+
+Static:
+O static define metodos e propriedades proprios para uma classe e não para os objetos decorrentes dela, ou seja, voce define certas propriedades que não precisam de um objeto para serem acessadas, e que o objeto não pode acessar, apenas o nome da classe e a propriedade são o suficiente.
+Então é como se voce tratasse uma classe como um objeto. Voce pode declarar variaveis e metodos normalmente, so que na hora de acessa-los voce tem que ter certeza que eles estão marcados com static, se não voce teria que criar um objeto para acessar tais propriedades.
+
+class person {
+    static name = "john";
+    static age = 500;
+    static hello(){
+        console.log(`Hello, i'm ${this.name}, and i am ${this.age} years old`)
+    }
+}
+
+console.log(person.hello());//aqui ao inves de criar um objeto para acessar certas propriedades eu consigo acessar diretamente as propriedades com static.
+
+Super:
+
+Um ponto a se falar antes de entrar na keyword Super é o conceito de herança.
+Programação orientada a objetos tem alguns paradigmas e um deles é a herença, basicamente temos uma classe pai e uma classe filha que herda as propriedades da classe pai (dai o nome).
+Então os objetos criados a partir da classe filha terão as mesmas propriedades e metodos da classe pai, isso é util pois não é necessaria a repetição constante de codigo e as classes filhas podem ter propriedades exclusivas alem das herdadas.
+
+Agora sobre Keyword:
+A keyword Super serve para acessar as propriedades e metodos de uma classe pai, funciona como o this mas enquanto o this é para o objeto onde ele esta o super é para a classe pai.

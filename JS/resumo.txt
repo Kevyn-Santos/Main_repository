@@ -160,3 +160,56 @@ portanto: classes são modelos de objetos, e objetos são instancias, coisas, cr
 Json(JavaScript Object Notation): 
 
 É uma especie de objeto que serve para mandar dados para um servidor, tanto que ele é escrito como um objeto, é como uma versao melhorada do XML, e tal como ele serve para transferencia de dados. geralmente ele vem de algum arquivo externo ou de uma API, e para transforma-lo em objeto é necessario usar o metodo  JSON.parse(variavel Json).
+
+
+
+Keywords:
+Existem algumas palavras especiais em javascript particularmente referentes a objetos e classes como this, static e super.
+
+This:
+O this diz praticamente o seguinte "pegue essa propriedade que esta dentro do objeto no qual estou", portnto ela referencia uma propriedade do objeto ou classe aonde ela [this] esta. Na pratica é mais simples de visualizar:
+
+let Person = {//object literal, um objeto ja instanciado sem a necessidade de uma classe
+    firstName: "John",
+    lastName: "Titor",
+    date: 2006,
+    greetings: function(){
+        console.log(`Olá, meu nome é ${this.firstName}`);
+    }
+};
+resultado: ola, meu nome é john
+
+Neste objeto o this fala, eu estou dentro de um objeto então pegue essa propriedade desse objeto, ou eu estou dentro de person então pegue a propriedade firstName de person.
+como o this referencia a propriedade de um objeto poderiamos esperar o mesmo resultado se entrassemos no objeto e depois na sua propriedade, portanto:
+${this.firstName} é equivalente a ${Person.firstName}.
+
+Se não usarmos o this então nossas funçoes ou atribuiçoes se ligariam a variaveis globais de mesmo nome, e se essas variaveis não forem declaradas então teremos um erro de variavel não existente.
+
+let firstName = "maria";
+let Person = {//object literal, um objeto ja instanciado sem a necessidade de uma classe
+    firstName: "John",
+    lastName: "Titor",
+    date: 2006,
+    greetings: function(){
+        console.log(`Olá, meu nome é ${firstName}`);
+    }
+};
+resultado: ola, meu nome é maria
+
+Aqui não usamos o this na função greetings, então quando a executarmos o nosso retorno não sera "john" mas sim "maria", pois a função esta acessando uma variavel global e não a do objeto.
+O mesmo vale para classes e construtores.
+OBS: se o this for declarado como variavel global ele vai retornar as propriedades da janela do navegador.
+
+Static:
+O static define metodos e propriedades proprios para uma classe e não para os objetos decorrentes dela, ou seja, voce define certas propriedades que não precisam de um objeto para serem acessadas, e que o objeto não pode acessar, apenas o nome da classe e a propriedade são o suficiente.
+Então é como se voce tratasse uma classe como um objeto. Voce pode declarar variaveis e metodos normalmente, so que na hora de acessa-los voce tem que ter certeza que eles estão marcados com static, se não voce teria que criar um objeto para acessar tais propriedades.
+
+class person {
+    static name = "john";
+    static age = 500;
+    static hello(){
+        console.log(`Hello, i'm ${this.name}, and i am ${this.age} years old`)
+    }
+}
+
+console.log(person.hello());//aqui ao inves de criar um objeto para acessar certas propriedades eu consigo acessar diretamente as propriedades com static.

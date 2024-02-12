@@ -1,3 +1,6 @@
+let firstName = "Maria";
+let tela = this;
+
 
 class People{//modelo para se contruir objetos
     nome;
@@ -5,13 +8,14 @@ class People{//modelo para se contruir objetos
     trabalho;
     anoNascimento
     constructor(nome, idade, trabalho){//São "valores padrão" para essa classe, mas no caso eu digo que tais valores padrao devem ser declarados se nao eles ficam indefinidos.
-        this.nome = nome;
+        this.nome = nome;// this se refere a propriedade do objeto aonde ele esta, então "o nome do objeto people se refere a nome do construtor"
         this.idade = idade;
         this.trabalho = trabalho;
         this.anoNascimento = 2023 - idade;
     }
     descrever(){
         console.log(`ola, eu sou ${this.nome}, tenho ${this.idade} anos de idade, e trabalho como ${this.trabalho}`);
+        // aqui eu digo que sera pego o nome, idade, e trabalho do objeto onde a função esta dentro. Se o this não fosse usado a função usaria as variaveis globais com nome, idade e trabalho. e como nesse caso não existem variaveis globais então da um problema de variavel não declarada.
     };
 }
 
@@ -34,4 +38,4 @@ let carinha = new People("John", 50, "engenheiro");// instancia, objeto construi
 carinha.idade = 50;
 carinha.trabalho = "engenheiro";
 instancias nao são declaradas desse jeito, mas sim entre os parenteses da variavel 'carinha' */
-console.log(descrever());
+console.log(Person.greetings());
