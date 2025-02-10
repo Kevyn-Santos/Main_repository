@@ -66,6 +66,6 @@ margem = lucro / faturamento
 print(f"Faturamento: R${faturamento: ,.2F}, Custo: R${custo: .2F}\n Lucro: R${lucro: .2F}, Margem: {margem: .2%}") # O : indica que uma variavel estará sendo formatada, portanto as formatações devem vir depois deles
 
 # .2F indica que aquele numero será um float de duas casas decimais, portanto o ponto é o separador decimal
-# ,.2F indica que aquele numero será um float com separação de milhar e decimal. Portanto a visrgula é o seoarador de milhar e deve obrigatoriamente vir antes do ponto, senão da erro
-# .1% Indica wue aquele numero será formatado como porcentagem contendo uma casa decimal
+# ,.2F indica que aquele numero será um float com separação de milhar e decimal. Portanto a virgula é o separador de milhar e deve obrigatoriamente vir antes do ponto, senão da erro
+# .1% Indica que aquele numero será formatado como porcentagem contendo uma casa decimal
 # \n quebra de linha
